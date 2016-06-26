@@ -1,0 +1,122 @@
+
+/* 
+    Created on : 5/05/2016, 7:09:23 PM
+    Author     : Neal
+
+    ! If editing please place tags under correct heading, calsses first then ids.
+      In alphabetical order for each type.
+
+*/
+
+/*##############################################################################
+0.Full page styling
+################################################################################*/
+
+/*styling for the container holding everything*/
+#container{
+    width: 80%;
+    height: 100%;
+    margin: auto;
+     
+}
+
+/*Full page styling*/
+#fullpage{
+    background-color: #FDFCDC;
+  
+    /* border-color: black;
+    border-style: solid;*/
+   
+}
+
+
+/*############################################################################
+1. ToolBar styling
+##############################################################################*/
+
+
+
+/*styling for lets play button in toolbar*/
+#letsPlay{
+    padding-top: 25px;
+    padding-right: 25px;
+    float:right;
+}
+
+/* LOGO styling*/
+#logo{
+    float:left;
+ 
+    /*border-color: black;
+    border-style: solid;*/
+    
+}
+
+/*styling for grey bar appearing at bottom of toolbar*/
+#spacer{
+    height: 50px;
+    background-color: #505050;
+   border-radius: 4px;
+    
+    /*border-color: pink;
+    border-style: solid;*/
+}
+
+/*styling for container holding entire toolbar*/
+#toolbar{
+    overflow: auto;
+    margin: auto;
+  
+   
+    /* border-color: red;
+    border-style: solid;*/
+  
+}
+
+/*#############################################################################
+2.FrontPage Body Styling
+##############################################################################*/
+
+/*Big Text styling*/
+.BigText{
+    font-size: 40;
+    
+}
+
+.SmallText{
+    line-height: 150%;
+    font-size: 20px;    
+}
+
+.disclaimer{
+    color: #505050;
+}
+
+/*Big logo in center of FrontPagePciture element*/
+#BigLogo{
+    margin:auto;
+    float: none;
+    padding-left: 5%;
+    
+    /*border-color: black;
+    border-style: solid;*/
+}
+
+/*Front page picture on left side of body*/
+#FrontPagePicture{
+    float:left;
+    width: 49%;
+    padding-top: 50px;
+        
+   /*
+    border-color: red;
+    border-style: solid;
+     */   
+}
+
+/*front page text css*/
+#FrontPageText{
+    float:right;
+    width: 50%;
+    color: #181818;
+}
