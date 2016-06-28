@@ -24,6 +24,7 @@
 #fullpage{
     /*background-color: #FDFCDC;*/
     background-color: #F8F8F8; 
+    
     /* border-color: black;
     border-style: solid;*/
    
@@ -152,15 +153,28 @@
 }
 
 #Links{
+    padding-top: 2%;
     width: 30%;
     font-size: 30px;
     float:left;
-    
+    padding-left: 20px;
     /*
     border-color: pink;
     border-style: solid;
     */
 }
+
+#Links a:link , a:visited{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;    
+    text-indent: 5px;
+}
+
+#Links a:hover{
+    text-decoration: underline;
+}
+
 
 #siteDesc{
     float:left;

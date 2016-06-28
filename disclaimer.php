@@ -28,8 +28,10 @@
                 
                 <div id = "Links">
                     <p><b>Useful Links</b></p>
-                    <p>blah<br>blah<br>blah<br>blah<br>blah<br></p>
-                                        
+                    <a href="https://en.wikipedia.org/wiki/Texas_hold_%27em_starting_hands"><p>Wikipedia-Starting Hands</p></a>
+                    <a href="http://www.pokerlistings.com/strategy/texas-holdem-starting-hands-cheat-sheet"><p>Poker Strategy-Starting Hands</p></a>
+                    <a href="https://www.partypoker.com/how-to-play/school/basics/key-facts.html"><p>Useful Poker Statistics</p></a>
+                    <a href="http://www.pokerology.com/lessons/starting-hand-selection/"><p>Starting Hand Selection</p></a>
                     
                 </div>
                 
