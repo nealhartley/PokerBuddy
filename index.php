@@ -5,7 +5,8 @@
         <div id="container">
             <?php
             include 'toolBar.php';
-            include 'frontPageBody.php';            
+            include 'frontPageBody.php';    
+            include 'disclaimer.php'
             ?>
             
                        

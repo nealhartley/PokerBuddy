@@ -14,7 +14,7 @@
 
 /*styling for the container holding everything*/
 #container{
-    width: 80%;
+    width: 70%;
     height: 100%;
     margin: auto;
      
@@ -22,8 +22,8 @@
 
 /*Full page styling*/
 #fullpage{
-    background-color: #FDFCDC;
-  
+    /*background-color: #FDFCDC;*/
+    background-color: #F8F8F8; 
     /* border-color: black;
     border-style: solid;*/
    
@@ -102,6 +102,13 @@
     border-style: solid;*/
 }
 
+/*body of front page*/
+#Body{
+   background-color: #E8E8E8; 
+   overflow: hidden;
+   padding-bottom: 10%;  
+}
+
 /*Front page picture on left side of body*/
 #FrontPagePicture{
     float:left;
@@ -119,4 +126,51 @@
     float:right;
     width: 50%;
     color: #181818;
+    padding-right: 10px;
+}
+
+.SectionEnd{
+     height: 1px;
+    background-color: #505050;
+   border-radius: 1px;
+}
+
+
+/*
+################################################################################
+3.Disclaimer styling
+################################################################################
+*/
+#Disclaimer{
+    width: 100%;
+    overflow: hidden;
+    
+    /*
+    border-color: green;
+    border-style: solid;
+    */
+}
+
+#Links{
+    width: 30%;
+    font-size: 30px;
+    float:left;
+    
+    /*
+    border-color: pink;
+    border-style: solid;
+    */
+}
+
+#siteDesc{
+    float:left;
+    padding-top: 2%;
+    padding-right: 2%;
+    width: 30%;
+    font-size: 20;
+    
+   /*
+    border-color: red;
+    border-style: solid;
+    */
 }

@@ -23,7 +23,7 @@ make sure to link to css: style.css on your page for the right styling"-->
                 <div id="letsPlay">
                  <a href = "https://www.facebook.com">
                      <!--Original image 200wide by 100high-->
-                     <image src = "Images/letsPlayButtonRed.png"
+                     <image src = "Images/letsPlayButtonBlue.png"
                             Width="100"
                             Height="50"/>
                      </a>

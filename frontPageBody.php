@@ -40,19 +40,22 @@
             <div id = "BigLetsPlay">                
                 <!--Original image 200wide by 100high-->
                 <a href="https://www.facebook.com">
-                     <image src = "Images/letsPlayButtonRed.png"
+                     <image src = "Images/letsPlayButtonBlue.png"
                             Width="200"
                             Height="100"/>
                      </a>     
                 <a/>
             </div>
             
+            
+            
         </div>
         
         
         
     </div>
-    
+    <div class = "SectionEnd">              
+    </div>
     
     
     
