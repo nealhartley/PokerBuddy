@@ -19,10 +19,19 @@
                 hand you need to learn to play and start from there.
             </p></div>
         
-        <h3>Sam Suit</h3>
+        <h3>High Pair</h3>
         <div><p>play it like this blah blah blah</p></div>
         
-        <h3>Continuous</h3>
+        <h3>Low Pair</h3>
+        <div><p>play it like this blah blah blah</p></div>
+        
+        <h3>Connectors</h3>
+        <div><p>play it like this blah blah blah</p></div>
+        
+        <h3>Unconnected</h3>
+        <div><p>play it like this blah blah blah</p></div>
+        
+        <h3>Suited</h3>
         <div><p>play it like this blah blah blah</p></div>
     </div>
 </html>
