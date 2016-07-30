@@ -17,6 +17,7 @@
     width: 70%;
     height: 100%;
     margin: auto;
+    min-width: 1000px;
      
 }
 
@@ -58,6 +59,7 @@
     height: 50px;
     background-color: #505050;
    border-radius: 4px;
+   
     
     /*border-color: pink;
     border-style: solid;*/
@@ -67,7 +69,7 @@
 #toolbar{
     overflow: auto;
     margin: auto;
-  
+    
    
     /* border-color: red;
     border-style: solid;*/
@@ -91,6 +93,7 @@
 
 .disclaimer{
     color: #505050;
+    
 }
 
 /*Big logo in center of FrontPagePciture element*/
@@ -98,7 +101,7 @@
     margin:auto;
     float: none;
     padding-left: 5%;
-    
+   
     /*border-color: black;
     border-style: solid;*/
 }
@@ -108,6 +111,7 @@
    background-color: #E8E8E8; 
    overflow: hidden;
    padding-bottom: 10%;  
+  
 }
 
 /*Front page picture on left side of body*/
@@ -187,4 +191,34 @@
     border-color: red;
     border-style: solid;
     */
+}
+
+
+/*
+################################################################################
+4.Choose Hand
+################################################################################
+*/
+
+div.panel{
+    display:none;
+}
+div.panel.show{
+    display:block !important;
+}
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
 }

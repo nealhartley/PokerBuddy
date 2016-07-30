@@ -39,7 +39,7 @@
             
             <div id = "BigLetsPlay">                
                 <!--Original image 200wide by 100high-->
-                <a href="https://www.facebook.com">
+                <a href="chooseHand.php">
                      <image src = "Images/letsPlayButtonBlue.png"
                             Width="200"
                             Height="100"/>

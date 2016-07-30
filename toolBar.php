@@ -21,7 +21,7 @@ make sure to link to css: style.css on your page for the right styling"-->
               
                 <!--let's play button-->
                 <div id="letsPlay">
-                 <a href = "https://www.facebook.com">
+                    <a href = "chooseHand.php">
                      <!--Original image 200wide by 100high-->
                      <image src = "Images/letsPlayButtonBlue.png"
                             Width="100"

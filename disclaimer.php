@@ -18,7 +18,7 @@
                         undertaking Pokerbuddy's poker experience.</p>
                     
                      <!--Original image 200wide by 100high-->
-                <a href="https://www.facebook.com">
+                     <a href="chooseHand.php">
                      <image src = "Images/letsPlayButtonBlue.png"
                             Width="100"
                             Height="50"/>
