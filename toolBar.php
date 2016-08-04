@@ -12,10 +12,12 @@ make sure to link to css: style.css on your page for the right styling"-->
                 <!--The logo-->
                 <div id="logo">
                     <!--Original image 650wide by 250high-->
-                    <img src="Images/LogoName.png"
+                     <a href="index.php">
+                        <img src="Images/LogoName.png"
                          Width ="280"
                          Height="100"
                          />
+                    </a>
                 </div>
 
               

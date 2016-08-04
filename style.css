@@ -18,6 +18,7 @@
     height: 100%;
     margin: auto;
     min-width: 1000px;
+    
      
 }
 
@@ -25,7 +26,7 @@
 #fullpage{
     /*background-color: #FDFCDC;*/
     background-color: #F8F8F8; 
-    
+    font-family: Georgia, Times, "Times New Roman", serif;
     /* border-color: black;
     border-style: solid;*/
    
@@ -221,4 +222,53 @@ button.accordion {
 
 button.accordion.active, button.accordion:hover {
     background-color: #ddd;
+}
+
+/*
+################################################################################
+4.1 Choose Hand Body2
+################################################################################
+*/
+
+.HandInfo{
+       /*
+    border-color: black;
+    border-style: solid;
+   */
+    padding: 1em;
+    color: #505050;
+    border:#505050 solid 1px;
+    border-radius: 5px;
+    margin-top: 1em;
+    
+}
+
+
+.HandInfo:odd{
+     background-color: #00S6DE;
+}
+.HandInfo:even{
+     background-color: #00S6DE;
+}
+
+.Play{
+    /*
+    border-color: black;
+    border-style: solid;
+   */ 
+    
+}
+
+.next{
+    
+}
+
+
+
+.next:hover{
+    
+    cursor:pointer;
+    cursor: hand;
+    color: black;
+    
 }

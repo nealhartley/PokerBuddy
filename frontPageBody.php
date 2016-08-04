@@ -5,11 +5,13 @@
     <div id="Body">
         <div id="FrontPagePicture">
             <div id = "BigLogo">
+               
                 <image
                     src ="Images/concepts/LogoConcept2.png"
                     Width = "400"
                     Height ="400"
                 />
+               
             </div>
         </div>
         
