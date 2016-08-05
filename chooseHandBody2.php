@@ -5,22 +5,45 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     
+  
+  
+    <div class="introductionChooseHand">
+    <p>Poker Buddy works on a simple user friendly interface based on the system of playing certain starting hands certain ways.
+       All you have to do is find the hand that looks most similar to yours and then select more to see more detailed information
+       on playing this hand.</p>    
+    </div>  
     <!---------------------------------------------------------------------------------->
     <!----------------------Highpair info from here!!----------------------------------->
     <!---------------------------------------------------------------------------------->
   <div class="HandInfo">
+       
       
-      <h3>High Pair</h3>
+     
+    <div class = "text">  
+    <h3>High Pair</h3>
       
-     <p>
+    <p>
     Some of the most powerful starting hands in poker. But the power only lasts  
     so long. The more players still in the higher the chance someone pulls a hand 
     stronger than your high pair.
-     </p>
+    </p>
+    </div>
+    <div class = "cards">
+        <image
+            src="Images/concepts/AceHeartsTemp.png"
+            height = "150px"
+            width ="100px"
+            />
+         <image
+            src="Images/concepts/AceSpadesTemp.png"
+            height = "150px"
+            width ="100px"
+            />
+    </div>
      
-      <div class = "next">
+        <div class = "next">
           <p><b>More...</b></p>
-      </div>
+        </div>
       
      <div class = "Play">
         <h3>Pre Flop</h3>

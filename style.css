@@ -251,6 +251,13 @@ button.accordion.active, button.accordion:hover {
      background-color: #00S6DE;
 }
 
+.introductionChooseHand{
+    color: #505050;
+    font-size: 1.5em;
+    padding-left:1em;
+    padding-right:1em;
+}
+
 .Play{
     /*
     border-color: black;
@@ -271,4 +278,13 @@ button.accordion.active, button.accordion:hover {
     cursor: hand;
     color: black;
     
+}
+
+.text{
+       
+}
+
+.cards{
+    
+   
 }
