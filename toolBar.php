@@ -5,6 +5,8 @@ make sure to link to css: style.css on your page for the right styling"-->
 <html>
     
     <link type="text/css" rel="stylesheet" href="style.css">
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     
     <div id="toolbar">
 
@@ -14,6 +16,7 @@ make sure to link to css: style.css on your page for the right styling"-->
                     <!--Original image 650wide by 250high-->
                      <a href="index.php">
                         <img src="Images/LogoName.png"
+                        title="Back to main page"
                          Width ="280"
                          Height="100"
                          />
@@ -26,6 +29,7 @@ make sure to link to css: style.css on your page for the right styling"-->
                     <a href = "chooseHand.php">
                      <!--Original image 200wide by 100high-->
                      <image src = "Images/letsPlayButtonBlue.png"
+                            title="Click here to begin using PokerBuddy"
                             Width="100"
                             Height="50"/>
                      </a>
@@ -35,4 +39,9 @@ make sure to link to css: style.css on your page for the right styling"-->
                         
             <!--the grey spacer bar at bottom of the toolbar-->
             <div id="spacer"></div>
+            
+        <script>
+            $(image).tooltip();
+            //$(img).tooltip();
+        </script>
 </html>

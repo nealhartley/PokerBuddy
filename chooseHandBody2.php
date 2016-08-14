@@ -302,7 +302,7 @@
      
     $( ".next" ).click(function(){
       
-        $(this).siblings(".Play").toggle();
+        $(this).siblings(".Play").toggle(600);
      
         console.log("pressed");
       

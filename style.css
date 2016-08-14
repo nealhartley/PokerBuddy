@@ -13,11 +13,18 @@
 ################################################################################*/
 
 /*styling for the container holding everything*/
+
+#Body{
+    
+}
+
 #container{
     width: 70%;
     height: 100%;
     margin: auto;
     min-width: 1000px;
+    border:none;
+    
     
      
 }
@@ -76,6 +83,13 @@
     border-style: solid;*/
   
 }
+
+.ui-tooltip{
+    padding: 1em;
+    box-shadow: 0 0 7px black;
+}
+
+
 
 /*#############################################################################
 2.FrontPage Body Styling
@@ -280,11 +294,30 @@ button.accordion.active, button.accordion:hover {
     
 }
 
-.text{
-       
+
+/*
+################################################################################
+4.1 Front page paralax box styling
+################################################################################
+*/
+
+.paralax-greeting-page{
+    
+    border:none;
+    background-color: white;
+    color: #505050;
+    position: fixed;
+    overflow:hidden;
+    
+    font-size: 50;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    height: 100%;
+    width:100%
+    
 }
 
-.cards{
-    
-   
+.interior-of-paralax{
+    margin: auto;
+    text-align: center;
 }
+
