@@ -17,7 +17,15 @@
                         B U D D Y
                     </p>
                 </div>
-              
+                <div class = "scroll">
+                    
+                    <p>scroll to continue</p>
+                    <img source = "images/upsideTriangle.svg"
+                         width = "50"
+                         height ="50"
+                         />
+                    
+                </div>
                 
             </div>
         

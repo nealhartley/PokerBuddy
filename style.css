@@ -321,3 +321,9 @@ button.accordion.active, button.accordion:hover {
     text-align: center;
 }
 
+.scroll{
+    margin:auto;
+    font-size: 20;
+    text-align: center;
+    color: #bcbcbc;
+}

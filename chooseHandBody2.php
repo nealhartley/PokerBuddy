@@ -30,12 +30,12 @@
     </div>
     <div class = "cards">
         <image
-            src="Images/concepts/AceHeartsTemp.png"
+            src="Images/CardsSVG/ace_of_spades.svg"
             height = "150px"
             width ="100px"
             />
          <image
-            src="Images/concepts/AceSpadesTemp.png"
+            src="Images/CardsSVG/ace_of_hearts.svg"
             height = "150px"
             width ="100px"
             />
@@ -63,7 +63,7 @@
                 <h3>After the flop</h3>
                 
                 <p>  
-                If you managed to pull either three of a kind or a full house look to continue to bet hard, 
+                If you managed to pull either three of a kind or a full house, look to continue to bet hard, 
                 it’s smooth sailing from here. Now it’s about maximising profit.
                 </p>
               
@@ -103,13 +103,26 @@
     <!----------------------Low Pair info from here!!----------------------------------->
     <!---------------------------------------------------------------------------------->
   
-  <div class="HandInfo">
+    <div class="HandInfo">
       
       <h3>Low Pair</h3>
       
       <p>A Low pair constitutes having a pair dealt to you that's face value is anything lower than a royal. i.e 10 and lower.</p>
       
       <p>The power in these is in the flop. Name of the game “trips”.</p>
+      
+        <div class = "cards">
+        <image
+            src="Images/CardsSVG/2_of_diamonds.svg"
+            height = "150px"
+            width ="100px"
+            />
+         <image
+            src="Images/CardsSVG/2_of_hearts.svg"
+            height = "150px"
+            width ="100px"
+            />
+        </div>
       
         <div class = "next">
         <p><b>More...</b></p>
@@ -170,6 +183,19 @@
 	If your cards are directly adjacent you have much higher chance of getting the 
         straight somewhere down the line. But even then your chances are low.
         </p>
+        
+        <div class = "cards">
+        <image
+            src="Images/CardsSVG/10_of_diamonds.svg"
+            height = "150px"
+            width ="100px"
+            />
+         <image
+            src="Images/CardsSVG/jack_of_clubs.svg"
+            height = "150px"
+            width ="100px"
+            />
+        </div>
       
        <div class = "next">
           <p><b>More...</b></p>
@@ -206,9 +232,22 @@
       <p>These are cards that are not within the 5 card span of a straight. </p>
       
         <p>
-        If you one of these isn’t an ace and they aren’t suited, fold this hand. Don’t waste any 
+        If neither of the cards in your hand is an ace and they aren’t suited, fold this hand. Don’t waste any 
         Chips. Feel free to see the flop if you were big blind and no one raised on the way round.
         </p>
+        
+        <div class = "cards">
+        <image
+            src="Images/CardsSVG/ace_of_spades.svg"
+            height = "150px"
+            width ="100px"
+            />
+         <image
+            src="Images/CardsSVG/3_of_clubs.svg"
+            height = "150px"
+            width ="100px"
+            />
+        </div>
       
         <div class = "next">
         <p><b>More...</b></p>
@@ -219,8 +258,8 @@
             <h3>Post Flop</h3>
             <p>
             What we were looking for here was hopefully getting a pair of your low card or aces to come out in the flop giving you three of that card, 
-            and the extra card in the flop to pair up your lower card 
-            Giving you a full house. If you did not get this proceed very carefully
+            and the extra card in the flop to pair up your remaining card 
+            Giving you a full house. If you did not get this proceed very carefully.
             </p>
             
             <div class = "next">
@@ -257,6 +296,19 @@
         Suited cards are the most overrated and overplayed hand by new players. What 
         most players don’t understand is that your chance of flopping a flush off of a suited hand is 0.8%.
         </p>
+        
+        <div class = "cards">
+        <image
+            src="Images/CardsSVG/7_of_clubs.svg"
+            height = "150px"
+            width ="100px"
+            />
+         <image
+            src="Images/CardsSVG/queen_of_clubs.svg"
+            height = "150px"
+            width ="100px"
+            />
+        </div>
       
         <div class = "next">
         <p><b>More...</b></p>
@@ -302,7 +354,7 @@
      
     $( ".next" ).click(function(){
       
-        $(this).siblings(".Play").toggle(600);
+        $(this).siblings(".Play").slideToggle(600);
      
         console.log("pressed");
       
