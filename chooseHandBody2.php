@@ -349,14 +349,15 @@
    </div>
   
    <script>
-       
+     //hide all the "Play" class divs  
     $(".Play").hide();
-     
+     //define function for when user clicks on a "next" class function
     $( ".next" ).click(function(){
-      
+        //take the siblings of the clicked "next" div that are class "Play" then slideToggle them.
+        //i.e. close if open or open if closed
         $(this).siblings(".Play").slideToggle(600);
      
-        console.log("pressed");
+       // console.log("pressed");
       
     });
   
