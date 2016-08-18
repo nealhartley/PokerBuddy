@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      
+        <div class = "practice">
+            
+            <button type = "button"> Give me a hand</button>
+           
+            
+            
+        </div>
+        
+        
+        
+    <script>
+        //click button does function that creates a hand for the user to practice with
+        $("button").click(function(){
+            
+            var min = 1; 
+            var max = 5;
+            
+            var handType = Math.random() * (min - max) + min;
+            
+            if(handType === HAND.HIGHPAIR.value){
+                giveMeCards(HAND.HIGHPAIR);
+            }
+            
+            else if(handType === HAND.LOWPAIR.value){
+                giveMeCards(HAND.LOWPAIR);
+            }
+            
+            else if(handType === HAND.CONNECTORS.value){
+                giveMeCards(HAND.CONNECTORS);
+            }
+            
+            else if(handType === HAND.UNCONNECTED.value){
+                giveMeCards(HAND.UNCONNECTED);
+            }
+           
+           else if(handType === HAND.SUITED.value){
+                giveMeCards(HAND.SUITED);
+            }
+            
+        });
+        
+        
+        //function returns a hand of specified type.
+        function giveMeHighPair(handType){
+            //the spread for possible card number
+            //Jack, Queen, King, Ace = 4 spread
+            var minCardNo = 1; 
+            var maxCardNo = 4;
+            
+            //spread for suits
+            var suitMin = 1; 
+            var suitMax = 4;
+            
+            //use math random to give us a card number
+            var handCardNumber = Math.random() * (minCardNo - maxCardNo) + minCardNo;
+            
+            //use math random to give us our suit type
+            var handSuit = Math.random() * (minCardNo - maxCardNo) + minCardNo; 
+            //get a different suit so as to make sure cards are not suited
+            var secondSuit = differentSuit(handsuit);
+            
+            
+        }
+        
+        
+        function differentSuit(suit){
+            
+            var suitMin = 1; 
+            var suitMax = 4;   
+
+            //use math random to give us our suit type
+            var handSuit = Math.random() * (minCardNo - maxCardNo) + minCardNo;
+
+            //if suit gotten from randomisation is the same as given suit
+            //recurse and return the result from running differentSuit() again.
+            if(handSuit === suit){
+                //recursive call.
+                return differentSuit(suit);
+            }
+
+            //if it makes it past if clause then we have an alternate suit
+            //return this suit.
+            return handSuit;
+        
+        }
+        
+        //DEFINED ENUMERATORS BELOW FOR ALL THE FUNCTIONS ABOVE
+        
+        //enum for hand types
+        var HAND = {
+            HIGHPAIR : {value:1, name: "high pair", code: "HP"},
+            LOWPAIR : {value:2, name: "low pair", code: "LP"},
+            CONNECTORS : {value:3, name: "connectors", code: "CON"},
+            UNCONNECTED : {value:4, name: "unconnected", code: "UNCON"},
+            SUITED : {value:5, name: "suited", code: "SUITD"}
+        }
+        //enums for suits
+        var SUIT = {
+            HEARTS : {value:1, name: "hearts", code: "HEARTS"},
+            DIAMONDS : {value:2, name: "diamonds", code: "DIAMONDS"},
+            CONNECTORS : {value:3, name: "connectors", code: "CON"},
+            UNCONNECTED : {value:4, name: "unconnected", code: "UNCON"},
+           
+        }
+        //enums for cards
+        var CARDS = {
+            ACE : {value:1, name: "ace", code: "ACE"},
+            TWO : {value:2, name: "two", code: "TWO"},
+            THREE : {value:3, name: "three", code: "THREE"},
+            FOUR : {value:4, name: "four", code: "FOUR"},
+            FIVE : {value:5, name: "five", code: "FIVE"},
+            SIX : {value:6, name: "six", code: "SIX"},
+            SEVEN : {value:7, name: "seven", code: "SEVEN"},
+            EIGHT : {value:8, name: "eight", code: "EIGHT"},
+            NINE : {value:9, name: "nine", code: "NINE"},
+            TEN : {value:10, name: "ten", code: "TEN"},
+            JACK : {value:11, name: "jack", code: "JACK"},
+            QUEEN : {value:12, name: "queen", code: "QUEEN"},
+            KING : {value:13, name: "king", code: "KING"},
+            
+        }
+
+    </script>     
+               
+    </body>
+    
+    
+   
+   
+</html>
+
