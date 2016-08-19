@@ -27,36 +27,46 @@ and open the template in the editor.
         //click button does function that creates a hand for the user to practice with
         $("button").click(function(){
             
+            console.log("button was clicked");
             var min = 1; 
             var max = 5;
             
-            var handType = Math.random() * (min - max) + min;
+            var handType = Math.floor(Math.random() * (max - min) + min);//selecting the type of hand the user is going to get
+            //we are using this format as oppsed to populating an array of cards and dealing them randomly as majority of the time
+            //the user would get junk hands making practice less meaningful. This way the user will practice every hand type evenly.
+            console.log("rolled a " + handType + " in click function");
             
             if(handType === HAND.HIGHPAIR.value){
-                giveMeCards(HAND.HIGHPAIR);
+                console.log("we got a high pair; rolled value was: " + handType);
+                giveMeHighPair();
+                
             }
             
             else if(handType === HAND.LOWPAIR.value){
-                giveMeCards(HAND.LOWPAIR);
+                console.log("we got a low pair; rolled value was: " + handType);
+               // giveMeCards(HAND.LOWPAIR);
             }
             
             else if(handType === HAND.CONNECTORS.value){
-                giveMeCards(HAND.CONNECTORS);
+                console.log("we got a connectors; rolled value was: " + handType);
+               // giveMeCards(HAND.CONNECTORS);
             }
             
             else if(handType === HAND.UNCONNECTED.value){
-                giveMeCards(HAND.UNCONNECTED);
+                console.log("we got a unconnected; rolled value was: " + handType);
+               // giveMeCards(HAND.UNCONNECTED);
             }
            
            else if(handType === HAND.SUITED.value){
-                giveMeCards(HAND.SUITED);
+               console.log("we got a suited; rolled value was: " + handType);
+                //giveMeCards(HAND.SUITED);
             }
             
         });
         
         
         //function returns a hand of specified type.
-        function giveMeHighPair(handType){
+        function giveMeHighPair(){
             //the spread for possible card number
             //Jack, Queen, King, Ace = 4 spread
             var minCardNo = 1; 
@@ -67,12 +77,19 @@ and open the template in the editor.
             var suitMax = 4;
             
             //use math random to give us a card number
-            var handCardNumber = Math.random() * (minCardNo - maxCardNo) + minCardNo;
+            var handCardNumber = Math.floor( Math.random() * (maxCardNo - minCardNo) + minCardNo );
             
             //use math random to give us our suit type
-            var handSuit = Math.random() * (minCardNo - maxCardNo) + minCardNo; 
+            var handSuit = Math.floor( Math.random() * (suitMax - suitMin) + minCardNo ); 
             //get a different suit so as to make sure cards are not suited
-            var secondSuit = differentSuit(handsuit);
+            var secondSuit = differentSuit(handSuit);
+            
+            //now we need to use the numbers we've generated to return a string that can be used 
+            //with jquery in order to produce the images of the card for the user to look at.
+            
+            
+            
+            
             
             
         }
@@ -82,22 +99,72 @@ and open the template in the editor.
             
             var suitMin = 1; 
             var suitMax = 4;   
+            
+            
 
             //use math random to give us our suit type
-            var handSuit = Math.random() * (minCardNo - maxCardNo) + minCardNo;
+            var handSuit = Math.floor(Math.random() * (suitMax - suitMin) + suitMin);
 
             //if suit gotten from randomisation is the same as given suit
             //recurse and return the result from running differentSuit() again.
             if(handSuit === suit){
                 //recursive call.
+                console.log("       recursing in differentSuit()");
                 return differentSuit(suit);
             }
 
             //if it makes it past if clause then we have an alternate suit
             //return this suit.
+            console.log("   inside differentSuit() given suit was " + suit);
+            console.log("   returning different suit now " + handSuit);
             return handSuit;
         
         }
+        
+        //Methods for turning card and suit numbers into strings below
+        
+        //takes the random generated number for a suit from another function and returns
+        //the associated suit.
+        function suitNumToString(suit){
+            //some simple stuff below comparing number given to our SUIT enumerators
+            if(suit === SUIT.DIAMONDS){return "diamonds";}
+            else if(suit === SUIT.HEARTS){return "hearts";}
+            else if(suit === SUIT.SPADES){return "spades";}
+            else if(suit === SUIT.CLUBS){return "clubs";}
+            else{
+                console.log("   !you've given cardToString() some bad input yo, returning hearts by default");
+                return "hearts";
+            }
+            
+        }
+        
+        //takes the random generated number for a card from another function and returns
+        //the associated card.
+        function cardNumToString(card){
+            
+            //########################add wrong input check here. <-----------make incorrect input exception class
+            
+            
+            //some simple stuff below comparing number given to our CARDS enumerators
+            //only need to do this for named cards i.e Jack,Queen,King,Ace otherwise number is fine for string
+            
+            
+            if(card === CARDS.ACE){return "ace";}
+            if(card === CARDS.JACK){return "jack";}
+            if(card === CARDS.QUEEN){return "queen";}
+            if(card === CARDS.KING){return "king";}
+            
+            //if it makes it past one of these then it must be a plain number card which we can return as is.
+            return card;
+         
+            }
+            
+            
+            
+            
+        
+        
+        
         
         //DEFINED ENUMERATORS BELOW FOR ALL THE FUNCTIONS ABOVE
         
@@ -113,8 +180,8 @@ and open the template in the editor.
         var SUIT = {
             HEARTS : {value:1, name: "hearts", code: "HEARTS"},
             DIAMONDS : {value:2, name: "diamonds", code: "DIAMONDS"},
-            CONNECTORS : {value:3, name: "connectors", code: "CON"},
-            UNCONNECTED : {value:4, name: "unconnected", code: "UNCON"},
+            CLUBS : {value:3, name: "clubs", code: "CON"},
+            SPADES : {value:4, name: "spades", code: "UNCON"},
            
         }
         //enums for cards
