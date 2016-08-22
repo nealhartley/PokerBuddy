@@ -38,13 +38,13 @@ and open the template in the editor.
             
             if(handType === HAND.HIGHPAIR.value){
                 console.log("we got a high pair; rolled value was: " + handType);
-                giveMeHighPair();
+                giveMePair("HIGH");
                 
             }
             
             else if(handType === HAND.LOWPAIR.value){
                 console.log("we got a low pair; rolled value was: " + handType);
-               // giveMeCards(HAND.LOWPAIR);
+               giveMePair("LOW");
             }
             
             else if(handType === HAND.CONNECTORS.value){
@@ -65,12 +65,27 @@ and open the template in the editor.
         });
         
         
-        //function returns a hand of specified type.
-        function giveMeHighPair(){
-            //the spread for possible card number
+        //########hand functions##########
+        
+        //function returns a High Pair.
+        function giveMePair(type){
+            
+            var minCardNo; 
+            var maxCardNo;
+        
+            if(type === "HIGH"){
+            //the spread for possible card number in high pair
             //Jack, Queen, King, Ace = 4 spread
-            var minCardNo = 1; 
-            var maxCardNo = 4;
+            minCardNo = 11; 
+            maxCardNo = 14;
+            }
+            
+            if(type === "LOW"){
+              //the spread for possible card number in low pair
+            //Jack, Queen, King, Ace = 4 spread
+            minCardNo = 2; 
+            maxCardNo = 10;
+            }  
             
             //spread for suits
             var suitMin = 1; 
@@ -78,6 +93,9 @@ and open the template in the editor.
             
             //use math random to give us a card number
             var handCardNumber = Math.floor( Math.random() * (maxCardNo - minCardNo) + minCardNo );
+                
+            //ace conversion
+            if(handCardNumber === 14){handCardNumber = 1;}
             
             //use math random to give us our suit type
             var handSuit = Math.floor( Math.random() * (suitMax - suitMin) + minCardNo ); 
@@ -85,13 +103,27 @@ and open the template in the editor.
             var secondSuit = differentSuit(handSuit);
             
             //now we need to use the numbers we've generated to return a string that can be used 
-            //with jquery in order to produce the images of the card for the user to look at.
+            //with jquery in order to produce the images of the card for the user to look at.            
+            var cards = cardNumToString(handCardNumber);//string for cards i.e ACE, etc
             
+            var suitOne = suitNumToString(handSuit); //suit for card one
+            var suitTwo = suitNumToString(secondSuit); //suit for card two
+                        
+            console.log( '<image src = "Images/CardsSVG/' + cards + '_of_' + suitOne + '.svg"/>');
+            console.log( "<image src = Images/CardsSVG/" + cards + "_of_" + suitTwo + ".svg/>");
             
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cards + '_of_' + suitOne + '.svg"/>');//append card 1 to div
             
+            $(".practice").append("<image src = Images/CardsSVG/" + cards + "_of_" + suitTwo + ".svg/>");//append card 2 to div
             
-            
-            
+        }
+        
+               
+        
+        
+        //gives a random integer between given bounds
+        function randomNum(low, high){
+            //DOOOOO III WANT THIS?            
         }
         
         
@@ -127,10 +159,10 @@ and open the template in the editor.
         //the associated suit.
         function suitNumToString(suit){
             //some simple stuff below comparing number given to our SUIT enumerators
-            if(suit === SUIT.DIAMONDS){return "diamonds";}
-            else if(suit === SUIT.HEARTS){return "hearts";}
-            else if(suit === SUIT.SPADES){return "spades";}
-            else if(suit === SUIT.CLUBS){return "clubs";}
+            if(suit === SUIT.DIAMONDS.value){return "diamonds";}
+            else if(suit === SUIT.HEARTS.value){return "hearts";}
+            else if(suit === SUIT.SPADES.value){return "spades";}
+            else if(suit === SUIT.CLUBS.value){return "clubs";}
             else{
                 console.log("   !you've given cardToString() some bad input yo, returning hearts by default");
                 return "hearts";
@@ -149,10 +181,10 @@ and open the template in the editor.
             //only need to do this for named cards i.e Jack,Queen,King,Ace otherwise number is fine for string
             
             
-            if(card === CARDS.ACE){return "ace";}
-            if(card === CARDS.JACK){return "jack";}
-            if(card === CARDS.QUEEN){return "queen";}
-            if(card === CARDS.KING){return "king";}
+            if(card === CARDS.ACE.value){return "ace";}
+            if(card === CARDS.JACK.value){return "jack";}
+            if(card === CARDS.QUEEN.value){return "queen";}
+            if(card === CARDS.KING.value){return "king";}
             
             //if it makes it past one of these then it must be a plain number card which we can return as is.
             return card;
