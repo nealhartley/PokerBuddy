@@ -30,8 +30,9 @@ and open the template in the editor.
             console.log("button was clicked");
             var min = 1; 
             var max = 5;
+            randomNum(min, max);
             
-            var handType = Math.floor(Math.random() * (max - min) + min);//selecting the type of hand the user is going to get
+            var handType = randomNum(min, max);//selecting the type of hand the user is going to get
             //we are using this format as oppsed to populating an array of cards and dealing them randomly as majority of the time
             //the user would get junk hands making practice less meaningful. This way the user will practice every hand type evenly.
             console.log("rolled a " + handType + " in click function");
@@ -49,17 +50,17 @@ and open the template in the editor.
             
             else if(handType === HAND.CONNECTORS.value){
                 console.log("we got a connectors; rolled value was: " + handType);
-               // giveMeCards(HAND.CONNECTORS);
+                giveMeConnectors();
             }
             
             else if(handType === HAND.UNCONNECTED.value){
                 console.log("we got a unconnected; rolled value was: " + handType);
-               // giveMeCards(HAND.UNCONNECTED);
+                giveMeUnconnected();
             }
            
            else if(handType === HAND.SUITED.value){
                console.log("we got a suited; rolled value was: " + handType);
-                //giveMeCards(HAND.SUITED);
+                giveMeSuited();
             }
             
         });
@@ -67,7 +68,77 @@ and open the template in the editor.
         
         //########hand functions##########
         
-        //function returns a High Pair.
+        //suited
+        function giveMeSuited(){
+            //one suit num since theyre going to be the same
+            var suitNum = randomNum(1,4);
+            
+            //numbers representing the value of the card
+            var card1Num = randomNum(10,13);
+            var card2Num = differentCard(card1Num);
+            
+            //now print the cards
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suitNum) + '.svg"/>');//append card 1 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suitNum) + ".svg/>");//append card 2 to div
+            
+        }
+        
+        //unconnected cards
+        function giveMeUnconnected(){
+            //numbers representing the value of the card
+            var card1Num = randomNum(10,13);
+            var card2Num;
+            
+            //second card must be atleast 5 away from the top card
+            //minus 2 from cardNum because we want neither 0 nor 1 as an option. A would make it a connected set
+            card2Num = card1Num - randomNum(5,card1Num-2);
+            
+            console.log( "card 1 :" + card1Num + " , card 2: " + card2Num);
+            //time to get some suits
+            var suit1Num = randomNum(1,4);
+            var suit2Num = randomNum(1,4);
+            
+            //now print the cards
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
+            
+        }
+        
+        
+        //connectors             ! NTS do we want connectors that are spaced further than 1 apart?
+        function giveMeConnectors(){
+            
+            //numbers representing the value of the card
+            var card1Num = randomNum(1,13);
+            var card2Num;
+            
+            //clauses ensuring we get a card within 1 unit for our second card
+            if(card1Num === 1){ card2Num = card1Num + 1; }
+            else if (card1Num === 13){card2Num = card1Num - 1; }
+            else{
+                var upOrDown = card1Num + randomNum(-1,1);
+                //if its not going to be the same we use it
+                if(upOrDown !== 0 ){card2Num = card1Num + randomNum(-1,1);}
+                //otherwise we jsut default to going up one, pretty lame, I know.
+                else{card2Num = card1Num + 1;}
+            }
+            
+            console.log( "card 1 :" + card1Num + " , card 2: " + card2Num);
+            //time to get some suits
+            var suit1Num = randomNum(1,4);
+            var suit2Num = randomNum(1,4);
+            
+            //now print the cards
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
+            
+        }
+        
+        
+        //function returns a High Pair or Low Pair.
         function giveMePair(type){
             
             var minCardNo; 
@@ -92,13 +163,14 @@ and open the template in the editor.
             var suitMax = 4;
             
             //use math random to give us a card number
-            var handCardNumber = Math.floor( Math.random() * (maxCardNo - minCardNo) + minCardNo );
+            var handCardNumber = randomNum(minCardNo, maxCardNo);
                 
             //ace conversion
             if(handCardNumber === 14){handCardNumber = 1;}
             
             //use math random to give us our suit type
-            var handSuit = Math.floor( Math.random() * (suitMax - suitMin) + minCardNo ); 
+            var handSuit = randomNum(suitMin, suitMax);
+            
             //get a different suit so as to make sure cards are not suited
             var secondSuit = differentSuit(handSuit);
             
@@ -121,21 +193,25 @@ and open the template in the editor.
                
         
         
-        //gives a random integer between given bounds
+        //gives a random integer between given bounds.
+        //both min and max are inclusive.
         function randomNum(low, high){
-            //DOOOOO III WANT THIS?            
+            //given the random nature of cards random generation comes in to play a lot so this just cuts down on code reuse
+            
+            return Math.floor(Math.random() * (high - low + 1) + low);
+            
+        
+        
         }
         
-        
+        //give teh numerical value of asuit will give you a different one
         function differentSuit(suit){
             
             var suitMin = 1; 
-            var suitMax = 4;   
-            
-            
+            var suitMax = 4;                        
 
             //use math random to give us our suit type
-            var handSuit = Math.floor(Math.random() * (suitMax - suitMin) + suitMin);
+            var handSuit = randomNum(suitMin, suitMax);
 
             //if suit gotten from randomisation is the same as given suit
             //recurse and return the result from running differentSuit() again.
@@ -149,8 +225,31 @@ and open the template in the editor.
             //return this suit.
             console.log("   inside differentSuit() given suit was " + suit);
             console.log("   returning different suit now " + handSuit);
-            return handSuit;
-        
+            return handSuit;        
+        }
+        //given the numerical value of a card will return you a different card.
+        function differentCard(card){
+            
+            var cardMin = 1; 
+            var cardMax = 13;                        
+
+            //use math random to give us our card
+            var newCard = randomNum(cardMin, cardMax);
+
+            //if card gotten from randomisation is the same as given suit
+            //recurse and return the result from running differentSuit() again.
+            if(newCard === card){
+                //recursive call.
+                console.log("       recursing in differentCard()");
+                return differentCard(card);
+            }
+
+            //if it makes it past if clause then we have an alternate suit
+            //return this suit.
+            console.log("   inside differentCard() given card was " + card);
+            console.log("   returning different card now " + newCard);
+            return newCard;        
+            
         }
         
         //Methods for turning card and suit numbers into strings below
@@ -164,7 +263,7 @@ and open the template in the editor.
             else if(suit === SUIT.SPADES.value){return "spades";}
             else if(suit === SUIT.CLUBS.value){return "clubs";}
             else{
-                console.log("   !you've given cardToString() some bad input yo, returning hearts by default");
+                console.log("   !you've given suitNumToString() some bad input yo: " + suit + ", returning hearts by default");
                 return "hearts";
             }
             
