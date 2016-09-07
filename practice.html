@@ -24,7 +24,26 @@ and open the template in the editor.
         
         
     <script>
-        //click button does function that creates a hand for the user to practice with
+    //global variables which will be sued for determining advice given to player.
+    
+    //gamestate. states: "DRAW", "PREFLOP", "FLOP", "TURN", "RIVER"
+    var gameState = "Draw";
+    
+    //handtype.  Types are= "HIGH", "LOW", "CONNECTED", "UNCONNECTED", "SUITED"
+    var global_HandType;
+    
+    //card 1 details
+    var global_Card1Num;
+    var global_Card1Suit;
+    
+    //card 2 details
+    var global_Card2Num;
+    var global_Card2Suit;
+    
+    
+    //click button does function that creates a hand for the user to practice with
+        
+        
         $("button").click(function(){
             
             console.log("button was clicked");
@@ -39,27 +58,32 @@ and open the template in the editor.
             
             if(handType === HAND.HIGHPAIR.value){
                 console.log("we got a high pair; rolled value was: " + handType);
+                global_HandType = "HIGH";
                 giveMePair("HIGH");
                 
             }
             
             else if(handType === HAND.LOWPAIR.value){
                 console.log("we got a low pair; rolled value was: " + handType);
+                global_HandType = "LOW";
                giveMePair("LOW");
             }
             
             else if(handType === HAND.CONNECTORS.value){
                 console.log("we got a connectors; rolled value was: " + handType);
+                global_HandType = "CONNECTORS";
                 giveMeConnectors();
             }
             
             else if(handType === HAND.UNCONNECTED.value){
                 console.log("we got a unconnected; rolled value was: " + handType);
+                global_HandType = "UNCONNECTED";
                 giveMeUnconnected();
             }
            
            else if(handType === HAND.SUITED.value){
                console.log("we got a suited; rolled value was: " + handType);
+               global_HandType = "SUITED";
                 giveMeSuited();
             }
             
@@ -76,11 +100,11 @@ and open the template in the editor.
             //numbers representing the value of the card
             var card1Num = randomNum(10,13);
             var card2Num = differentCard(card1Num);
+             
+            setGlobalVars(card1Num, card2Num, suitNum, suitNum);
             
             //now print the cards
-            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suitNum) + '.svg"/>');//append card 1 to div
-            
-            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suitNum) + ".svg/>");//append card 2 to div
+            drawHand(card1Num,card2Num,suitNum,suitNum);
             
         }
         
@@ -99,11 +123,10 @@ and open the template in the editor.
             var suit1Num = randomNum(1,4);
             var suit2Num = randomNum(1,4);
             
+            setGlobalVars(card1Num, card2Num, suit1Num, suit2Num);
+            
             //now print the cards
-            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
-            
-            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
-            
+            drawHand(card1Num,card2Num,suit1Num,suit2Num);
         }
         
         
@@ -120,7 +143,7 @@ and open the template in the editor.
             else{
                 var upOrDown = card1Num + randomNum(-1,1);
                 //if its not going to be the same we use it
-                if(upOrDown !== 0 ){card2Num = card1Num + randomNum(-1,1);}
+                if(upOrDown !== 0 ){card2Num = card1Num + upOrDown;}
                 //otherwise we jsut default to going up one, pretty lame, I know.
                 else{card2Num = card1Num + 1;}
             }
@@ -130,11 +153,10 @@ and open the template in the editor.
             var suit1Num = randomNum(1,4);
             var suit2Num = randomNum(1,4);
             
+            setGlobalVars(card1Num, card2Num, suit1Num, suit2Num);
+            
             //now print the cards
-            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
-            
-            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
-            
+            drawHand(card1Num, card2Num, suit1Num, suit2Num);                        
         }
         
         
@@ -178,16 +200,19 @@ and open the template in the editor.
             //with jquery in order to produce the images of the card for the user to look at.            
             var cards = cardNumToString(handCardNumber);//string for cards i.e ACE, etc
             
-            var suitOne = suitNumToString(handSuit); //suit for card one
-            var suitTwo = suitNumToString(secondSuit); //suit for card two
+           
+            
+            setGlobalVars(handCardNumber, handCardNumber, handSuit, secondSuit);
                         
-            console.log( '<image src = "Images/CardsSVG/' + cards + '_of_' + suitOne + '.svg"/>');
-            console.log( "<image src = Images/CardsSVG/" + cards + "_of_" + suitTwo + ".svg/>");
+           // console.log( '<image src = "Images/CardsSVG/' + cards + '_of_' + suitOne + '.svg"/>');
+           // console.log( "<image src = Images/CardsSVG/" + cards + "_of_" + suitTwo + ".svg/>");
             
-            $(".practice").append( '<image src = "Images/CardsSVG/' + cards + '_of_' + suitOne + '.svg"/>');//append card 1 to div
+            //draw hand
+            drawHand(handCardNumber, handCardNumber, handSuit, secondSuit);
             
-            $(".practice").append("<image src = Images/CardsSVG/" + cards + "_of_" + suitTwo + ".svg/>");//append card 2 to div
             
+           
+           
         }
         
                
@@ -224,7 +249,7 @@ and open the template in the editor.
             //if it makes it past if clause then we have an alternate suit
             //return this suit.
             console.log("   inside differentSuit() given suit was " + suit);
-            console.log("   returning different suit now " + handSuit);
+            console.log("   returning different suit now " + suitNumToString(handSuit));
             return handSuit;        
         }
         //given the numerical value of a card will return you a different card.
@@ -247,7 +272,7 @@ and open the template in the editor.
             //if it makes it past if clause then we have an alternate suit
             //return this suit.
             console.log("   inside differentCard() given card was " + card);
-            console.log("   returning different card now " + newCard);
+            console.log("   returning different card now " + cardNumToString(newCard));
             return newCard;        
             
         }
@@ -290,7 +315,26 @@ and open the template in the editor.
          
             }
             
+        //sets the global variables that keep the game state for cards.
+        function setGlobalVars(card1Num, card2Num, card1Suit, card2Suit){
             
+            global_Card1Num = card1Num;
+            global_Card2Num = card2Num;
+            
+            global_Card1Suit = card1Suit;
+            global_Card2Suit = card2Suit;
+        }
+        
+        
+        //draws the drawn cards to the div that originally had the draw cards button.
+        function drawHand(card1Num, card2Num, suit1Num, suit2Num){
+            
+            $(".practice").empty();
+            
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
+        }
             
             
         
