@@ -15,7 +15,7 @@ and open the template in the editor.
       
         <div class = "practice">
             
-            <button type = "button"> Give me a hand</button>
+            <button type = "button"> Let's Go</button>
            
             
             
@@ -27,7 +27,7 @@ and open the template in the editor.
     //global variables which will be sued for determining advice given to player.
     
     //gamestate. states: "DRAW", "PREFLOP", "FLOP", "TURN", "RIVER"
-    var gameState = "Draw";
+    var gameState = "DRAW";
     
     //handtype.  Types are= "HIGH", "LOW", "CONNECTED", "UNCONNECTED", "SUITED"
     var global_HandType;
@@ -46,48 +46,85 @@ and open the template in the editor.
         
         $("button").click(function(){
             
-            console.log("button was clicked");
-            var min = 1; 
-            var max = 5;
-            randomNum(min, max);
+            console.log("gameState = " + gameState);
             
-            var handType = randomNum(min, max);//selecting the type of hand the user is going to get
-            //we are using this format as oppsed to populating an array of cards and dealing them randomly as majority of the time
-            //the user would get junk hands making practice less meaningful. This way the user will practice every hand type evenly.
-            console.log("rolled a " + handType + " in click function");
+            if(gameState === "DRAW"){
             
-            if(handType === HAND.HIGHPAIR.value){
-                console.log("we got a high pair; rolled value was: " + handType);
-                global_HandType = "HIGH";
-                giveMePair("HIGH");
+                console.log("button was clicked");
+                var min = 1; 
+                var max = 5;
+                randomNum(min, max);
+
+                var handType = randomNum(min, max);//selecting the type of hand the user is going to get
+                //we are using this format as oppsed to populating an array of cards and dealing them randomly as majority of the time
+                //the user would get junk hands making practice less meaningful. This way the user will practice every hand type evenly.
+                console.log("rolled a " + handType + " in click function");
+
+                if(handType === HAND.HIGHPAIR.value){
+                    console.log("we got a high pair; rolled value was: " + handType);
+                    global_HandType = "HIGH";
+                    giveMePair("HIGH");
+
+                }
+
+                else if(handType === HAND.LOWPAIR.value){
+                    console.log("we got a low pair; rolled value was: " + handType);
+                    global_HandType = "LOW";
+                   giveMePair("LOW");
+                }
+
+                else if(handType === HAND.CONNECTORS.value){
+                    console.log("we got a connectors; rolled value was: " + handType);
+                    global_HandType = "CONNECTORS";
+                    giveMeConnectors();
+                }
+
+                else if(handType === HAND.UNCONNECTED.value){
+                    console.log("we got a unconnected; rolled value was: " + handType);
+                    global_HandType = "UNCONNECTED";
+                    giveMeUnconnected();
+                }
+
+               else if(handType === HAND.SUITED.value){
+                   console.log("we got a suited; rolled value was: " + handType);
+                   global_HandType = "SUITED";
+                    giveMeSuited();
+                }
+            }
+            
+            else if(gameState === "PREFLOP"){
+                console.log("deal Flop!");
+                dealFlop();
                 
             }
             
-            else if(handType === HAND.LOWPAIR.value){
-                console.log("we got a low pair; rolled value was: " + handType);
-                global_HandType = "LOW";
-               giveMePair("LOW");
-            }
-            
-            else if(handType === HAND.CONNECTORS.value){
-                console.log("we got a connectors; rolled value was: " + handType);
-                global_HandType = "CONNECTORS";
-                giveMeConnectors();
-            }
-            
-            else if(handType === HAND.UNCONNECTED.value){
-                console.log("we got a unconnected; rolled value was: " + handType);
-                global_HandType = "UNCONNECTED";
-                giveMeUnconnected();
-            }
-           
-           else if(handType === HAND.SUITED.value){
-               console.log("we got a suited; rolled value was: " + handType);
-               global_HandType = "SUITED";
-                giveMeSuited();
-            }
-            
         });
+        
+        //#############Deal out cards#################
+        
+    
+        //deal flop
+        function dealFlop(){
+            
+            //card 1 deets
+            var card1Num = randomNum(1,13);
+            var card1Suit = randomNum(1,4);
+            //card 2 deets
+            var card2Num = randomNum(1,13);
+            var card2Suit = randomNum(1,4);
+            //card3 deets
+            var card3Num = randomNum(1,13);
+            var card3Suit = randomNum(1,4);
+            
+            console.log("about to draw flop");
+            
+            
+            drawFlop(card1Num, card1Suit, card2Num, card2Suit, card3Num , card3Suit);
+            
+            
+            
+            
+        }
         
         
         //########hand functions##########
@@ -141,11 +178,12 @@ and open the template in the editor.
             if(card1Num === 1){ card2Num = card1Num + 1; }
             else if (card1Num === 13){card2Num = card1Num - 1; }
             else{
-                var upOrDown = card1Num + randomNum(-1,1);
+                var upOrDown = randomNum(1,2);
+                console.log(upOrDown);
                 //if its not going to be the same we use it
-                if(upOrDown !== 0 ){card2Num = card1Num + upOrDown;}
+                if(upOrDown === 0 ){card2Num = card1Num + 1;}
                 //otherwise we jsut default to going up one, pretty lame, I know.
-                else{card2Num = card1Num + 1;}
+                else{card2Num = card1Num - 1;}
             }
             
             console.log( "card 1 :" + card1Num + " , card 2: " + card2Num);
@@ -329,11 +367,30 @@ and open the template in the editor.
         //draws the drawn cards to the div that originally had the draw cards button.
         function drawHand(card1Num, card2Num, suit1Num, suit2Num){
             
-            $(".practice").empty();
-            
+                        
             $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
             
             $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
+            
+                     
+            //change gamestate
+            gameState = "PREFLOP";
+            
+        }
+        
+        //draws the flop cards to the div.
+        function drawFlop(num1,suit1,num2,suit2,num3,suit3){
+            
+            console.log("drawing flop");
+            
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(num1) + '_of_' + suitNumToString(suit1) + '.svg"/>');//append card 1 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(num2) + "_of_" + suitNumToString(suit2) + ".svg/>");//append card 2 to div
+            
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(num3) + "_of_" + suitNumToString(suit3) + ".svg/>");//append card 3 to div
+            
+            //change gameState
+            gameState = "FLOP";
         }
             
             
