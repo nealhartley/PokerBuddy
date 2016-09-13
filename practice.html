@@ -40,6 +40,25 @@ and open the template in the editor.
     var global_Card2Num;
     var global_Card2Suit;
     
+    //flop card 1
+    var global_FlopCard1Num;
+    var global_FlopCard1Suit;
+    
+    //flop card 2
+    var global_FlopCard2Num;
+    var global_FlopCard2Suit;
+    
+    //flop card 3
+    var global_FlopCard3Num;
+    var global_FlopCard3Suit;
+    
+    //turn
+    var global_TurnCardNum;
+    var global_TurnCardSuit;
+    
+    //river
+    var global_RiverCardNum;
+    var global_RiverCardSuit;
     
     //click button does function that creates a hand for the user to practice with
         
@@ -98,6 +117,18 @@ and open the template in the editor.
                 
             }
             
+            else if(gameState==="FLOP"){     
+                console.log("we got to dealign turn; gameState: " + gameState);
+                
+                dealTurn();
+            }
+            
+            else if(gameState==="TURN"){  
+                
+                console.log("we got to dealign river");
+                dealRiver();
+            }
+            
         });
         
         //#############Deal out cards#################
@@ -107,25 +138,39 @@ and open the template in the editor.
         function dealFlop(){
             
             //card 1 deets
-            var card1Num = randomNum(1,13);
-            var card1Suit = randomNum(1,4);
+            giveMeCardNonExistent(global_FlopCard1Num , global_FlopCard1Suit, 1);
             //card 2 deets
-            var card2Num = randomNum(1,13);
-            var card2Suit = randomNum(1,4);
+            giveMeCardNonExistent(global_FlopCard2Num , global_FlopCard2Suit, 2);
             //card3 deets
-            var card3Num = randomNum(1,13);
-            var card3Suit = randomNum(1,4);
+            giveMeCardNonExistent(global_FlopCard3Num , global_FlopCard3Suit, 3);
             
             console.log("about to draw flop");
             
             
-            drawFlop(card1Num, card1Suit, card2Num, card2Suit, card3Num , card3Suit);
+            drawFlop();            
+        }
+        
+        //deals the turn card
+        function dealTurn(){
+            //card 1 deets
+            giveMeCardNonExistent(global_TurnCardNum , global_TurnCardSuit, 4);
             
-            
+            console.log("-turn card details; number = " + global_TurnCardNum + " ..suit = " + global_TurnCardSuit);
+            drawCard("TURN");
             
             
         }
         
+        //deals the river card
+        function dealRiver(){
+            //card 1 deets
+            giveMeCardNonExistent(global_RiverCardNum , global_RiverCardSuit, 5);
+            console.log("~river card details; number = " + global_RiverCardNum + " ..suit = " + global_RiverCardSuit);
+            
+            drawCard("RIVER");
+            
+            
+        }
         
         //########hand functions##########
         
@@ -380,20 +425,101 @@ and open the template in the editor.
         
         //draws the flop cards to the div.
         function drawFlop(num1,suit1,num2,suit2,num3,suit3){
+           
             
             console.log("drawing flop");
             
-            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(num1) + '_of_' + suitNumToString(suit1) + '.svg"/>');//append card 1 to div
+            $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(global_FlopCard1Num) + '_of_' + suitNumToString(global_FlopCard1Suit) + '.svg"/>');//append card 1 to div
             
-            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(num2) + "_of_" + suitNumToString(suit2) + ".svg/>");//append card 2 to div
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(global_FlopCard2Num) + "_of_" + suitNumToString(global_FlopCard2Suit) + ".svg/>");//append card 2 to div
             
-            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(num3) + "_of_" + suitNumToString(suit3) + ".svg/>");//append card 3 to div
+            $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(global_FlopCard3Num) + "_of_" + suitNumToString(global_FlopCard3Suit) + ".svg/>");//append card 3 to div
             
             //change gameState
             gameState = "FLOP";
         }
+        
+        //for drawing a single card to screen. used for turn and river
+        function drawCard(state){
+            
+            if(state === "TURN"){
+                console.log("   drawCard Turn happening");
+                gameState = "TURN";
+                $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(global_TurnCardNum) + '_of_' + suitNumToString(global_TurnCardSuit) + '.svg"/>');//append turn to div
+                                
+            }
+            else if(state === "RIVER"){
+                console.log("   drawCard River happening");
+                
+                $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(global_RiverCardNum) + '_of_' + suitNumToString(global_RiverCardSuit) + '.svg"/>');//append river to div
+                gameState = "RIVER";
+            }
+                        
+        }
+            
+        //give it two variables and then define then with the card and suit number that make sure this card isnt already in use
+        function giveMeCardNonExistent(card, suit, cardNo){
+            
+            card = randomNum(1,13);
+            suit = randomNum(1,4);
+            
+            //cehcking against hand
+            if(card === global_Card1Num){                
+                if(suit === global_Card1Suit){ giveMeCardNonExistent(card, suit); }                                
+            }
+            if(card === global_Card2Num){                
+                if(suit === global_Card2Suit){ giveMeCardNonExistent(card, suit); }                                
+            }                                         
             
             
+            //checking against flop cards
+            if(card === global_FlopCard1Num && cardNo !== 1){   //check against flop card 1             
+                if(suit === global_FlopCard1Suit){ giveMeCardNonExistent(card, suit); }                                
+            }
+            else if(card === global_FlopCard2Num && cardNo !== 2){    //check against flop card 2            
+                if(suit === global_FlopCard2Suit){ giveMeCardNonExistent(card, suit); }                                
+            }
+            else if(card === global_FlopCard3Num && cardNo !== 3){//check it against flop card 3                
+                if(suit === global_FlopCard3Suit){ giveMeCardNonExistent(card, suit); }                                
+            }
+            
+            //turn cehck
+            else if(card === global_TurnCardNum && cardNo !== 4){//check it against turn card                
+                if(suit === global_TurnCardSuit){ giveMeCardNonExistent(card, suit); }                                
+            }    
+            
+            //river check
+            else if(card === global_RiverCardNum && cardNo !== 5){//check it against river               
+                if(suit === global_RiverCardSuit){ giveMeCardNonExistent(card, suit); }                                
+            }
+            
+            //if it didnt clash with any cards then we need to set the global variable for drawing and cehcking agaisnt later.
+            else{
+                if(cardNo === 1){
+                    global_FlopCard1Num = card; 
+                    global_FlopCard1Suit = suit;            }
+                else if(cardNo === 2){
+                     global_FlopCard2Num = card; 
+                     global_FlopCard2Suit = suit;                
+                }
+                else if(cardNo === 3){
+                     global_FlopCard3Num = card; 
+                     global_FlopCard3Suit = suit;                
+                }
+                else if(cardNo === 4){       
+                    global_TurnCardNum = card;
+                    global_TurnCardSuit = suit;
+                }
+                else if(cardNo === 5){
+                    global_RiverCardNum = card;
+                    global_RiverCardSuit = suit;
+                }
+            }
+            
+            
+        }
+        
+        
         
         
         
