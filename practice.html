@@ -540,6 +540,67 @@ and open the template in the editor.
             
             if(gameState === "PREFLOP"){describePockets();}
             
+            else{
+                generateDescription();
+            }    
+        }
+        
+        //generate description of hand and append it to description of hand
+        function generateDescription(){
+            //going to contain a count of each card that appears at each value
+            var numbers = new Array(14); // will disregard 0 index. want index value to align with card value.
+            //contains a count of each card that is of each suit.
+            var suits = new Array(4);
+            
+            
+            //instantiate arrays with numbers
+            for (var i =0; i<numbers.length;i++){  numbers[i]=0    }           
+            
+            for (var i =0; i<suits.length;i++){ suits[i]=0;  }
+            
+            
+            numbers[global_Card1Num] = numbers[global_Card1Num]+1; // adds a tally to the point representing card1s number
+            suits[global_Card1Suit-1] = suits[global_Card1Suit-1]+1; //adds a tally to the point representing card1s suit
+            
+            numbers[global_Card2Num]=numbers[global_Card2Num]+1; // adds a tally to the point representing card2s number
+            suits[global_Card2Suit-1] = suits[global_Card2Suit-1]+1; //adds a tally to the point representing card1s suit
+            
+            if(gameState === "FLOP" || gameState === "TURN" || gameState === "RIVER"){
+                //ADDING FLOP CARDS TO TALLYS
+                numbers[global_FlopCard1Num] = numbers[global_FlopCard1Num]+1; 
+                suits[global_FlopCard1Suit-1] = suits[global_FlopCard1Suit-1]+1; 
+                
+                numbers[global_FlopCard2Num] = numbers[global_FlopCard2Num]+1; 
+                suits[global_FlopCard2Suit-1] = suits[global_FlopCard2Suit-1]+1;
+                
+                numbers[global_FlopCard3Num] = numbers[global_FlopCard3Num]+1; 
+                suits[global_FlopCard3Suit-1] = suits[global_FlopCard3Suit-1]+1;
+                
+            }
+            
+            if(gameState === "TURN" || gameState === "RIVER"){
+                //ADDING turn CARDS TO TALLYS
+                numbers[global_TurnCardNum-1] = numbers[global_TurnCardNum-1]+1; 
+                suits[global_TurnCardSuit-1] = suits[global_TurnCardSuit-1]+1;                                 
+            }
+            
+            if(gameState === "TURN" || gameState === "RIVER"){
+                //ADDING river CARDS TO TALLYS
+                numbers[global_RiverCardNum-1] = numbers[global_RiverCardNum-1]+1; 
+                suits[global_RiverCardSuit-1] = suits[global_RiverCardSuit-1]+1;                                 
+            }
+            
+            console.log("printing out values of numbers!");
+            for (var i =0; i<numbers.length;i++){
+                console.log("   " + i +"th index = "+ numbers[i]);
+            }
+            
+            console.log("printing out values of suits!");
+            for (var i =0; i<suits.length;i++){
+                console.log("   " + i +"th index = "+ suits[i]);
+            }
+            
+            
         }
         
         //for describing what you were handed before and cards come out on the table
