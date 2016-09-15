@@ -24,6 +24,9 @@ and open the template in the editor.
         <div class = "table">
             </div>
         
+        <div class = "handInfo">
+            
+        </div>
         
         
     <script>
@@ -132,6 +135,7 @@ and open the template in the editor.
                 dealRiver();
             }
             
+            describeHand();
         });
         
         //#############Deal out cards#################
@@ -529,7 +533,63 @@ and open the template in the editor.
         }
         
         
+        //###########################functions for printing info about hand etc#################################
         
+        //describe hand
+        function describeHand(){
+            
+            if(gameState === "PREFLOP"){describePockets();}
+            
+        }
+        
+        //for describing what you were handed before and cards come out on the table
+        function describePockets(){
+             //handtype.  Types are= "HIGH", "LOW", "CONNECTED", "UNCONNECTED", "SUITED"
+             
+             //DESCRIPTION OF HOW TO PALY HIGH PAIR HAND
+            if(global_HandType === "HIGH"){
+                
+                $(".handInfo").append("<p>Off the bat you have one of the strongest hands in the game.\n\
+                Depending on how strong your hand is. Right now you want to push as many people out of the pot as possible.\n\
+                The more people you get to fold now the less likely you'll go up against someone who will get anything stronger than you on the table.</p>");
+                
+            }
+            //DESCRIPTION OF HOW TO PLAY LOW PAIR HAND
+            else if(global_HandType === "LOW"){
+                
+                $(".handInfo").append("<p>A low pair is not very strong. \n\
+                Every other player has the chance to pull a pair on the flop or to have a pocket pair that will easily beat your hand. \n\
+                The key to a low pair is to try and get three of a kind on the flop.</p>");
+                
+            }
+            //DESCRIPTION HOW TO PLAY CONNECTED HAND
+            else if(global_HandType === "CONNECTED"){
+                
+                $(".handInfo").append("<p>The potential is strong with this one. This hand has a lot of potential. \n\
+                Things you should keep in mind are:\n\
+                    How high are my connected cards,\n\
+                    Are they suited?\n\
+                    How far apart are they</p>");
+                
+            }
+            //DESCRIPTION OF HOW TO PLAY UNCONNECTED HAND
+            else if(global_HandType === "UNCONNECTED"){
+                
+                $(".handInfo").append("<p>This is one of the worst hands. If you paid big blinds it might be worth staying in.\n\
+                If someone rasises dont bother calling, the odds are you will just be wasting chips.\n\
+                The only hope is that you get very very lucky on the flop.</p>");
+                
+            }
+            //DESCRIPTION OF HOW TO PLAY SUITED HAND
+            else if(global_HandType === "SUITED"){
+                
+                $(".handInfo").append("<p>This hand has lots of potential.\n\
+                What needs to be kept in mind is that potential doesn't always come through.\n\
+                The chance of flopping a flush with suited cards in your hand is less than 1%.\n\
+                If you can get by for free its worth seeing that flop though.</p>");
+            }
+        
+        }
         
         
         
@@ -568,6 +628,9 @@ and open the template in the editor.
             KING : {value:13, name: "king", code: "KING"},
             
         }
+        
+        
+        
 
     </script>     
                
