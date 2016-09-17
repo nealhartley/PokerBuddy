@@ -327,3 +327,41 @@ button.accordion.active, button.accordion:hover {
     text-align: center;
     color: #bcbcbc;
 }
+
+
+/*
+#########################################################################
+5 practice page styling
+#########################################################################
+*/
+
+.practice{
+    
+    padding-top: 1em;
+    
+    border-color: black;
+    border-style: solid; 
+    
+    
+        
+    
+}
+.practice image{
+    padding-left: 1em;
+}
+
+.table{
+    padding-left: 1em;
+    
+    border-color: red;
+    border-style: solid;
+}
+
+.HandInfo{
+    width: 50rem;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    
+    border-color: black;
+    border-style: solid;
+    
+}

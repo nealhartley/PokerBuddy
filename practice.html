@@ -7,27 +7,62 @@ and open the template in the editor.
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <link type="text/css" rel="stylesheet" href="style.css">
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-      
-        <div class = "practice">
-            
-            <button type = "button"> Let's Go</button>
-           
-            
-            
-        </div>
         
-        <div class = "table">
+        <div id = "container">
+        
+            <!--tool bar from here--> 
+             <div id="toolbar">                
+                     <!--The logo-->
+                     <div id="logo">
+                         <!--Original image 650wide by 250high-->
+                          <a href="index.php">
+                             <img src="Images/LogoName.png"
+                             title="Back to main page"
+                              Width ="280"
+                              Height="100"
+                              />
+                         </a>
+                     </div>
+
+                     <!--let's play button-->
+                     <div id="letsPlay">
+                         <a href = "chooseHand.php">
+                          <!--Original image 200wide by 100high-->
+                          <image src = "Images/letsPlayButtonBlue.png"
+                                 title="Click here to begin using PokerBuddy"
+                                 Width="100"
+                                 Height="50"/>
+                          </a>
+                     </div>
+             </div>
+
+             <!--the grey spacer bar at bottom of the toolbar-->
+             <div id="spacer"></div>
+            
+            <!--tool bar over-->
+
+
+
+            <!--from here are the amin components-->
+            <div class = "practice">            
+                <button type = "button"> Let's Go</button>
+            </div>
+
+            <div class = "handInfo">
+
+            </div>
+
+            <div class = "table">
             </div>
         
-        <div class = "handInfo">
-            
+       
         </div>
-        
         
     <script>
     //global variables which will be sued for determining advice given to player.
@@ -419,13 +454,14 @@ and open the template in the editor.
         //draws the drawn cards to the div that originally had the draw cards button.
         function drawHand(card1Num, card2Num, suit1Num, suit2Num){
             
-                        
+             
+          
+        
             $(".practice").append( '<image src = "Images/CardsSVG/' + cardNumToString(card1Num) + '_of_' + suitNumToString(suit1Num) + '.svg"/>');//append card 1 to div
             
             $(".practice").append("<image src = Images/CardsSVG/" + cardNumToString(card2Num) + "_of_" + suitNumToString(suit2Num) + ".svg/>");//append card 2 to div
+          
             
-                     
-            //change gamestate
             gameState = "PREFLOP";
             
         }
